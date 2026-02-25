@@ -8,7 +8,7 @@ A small Next.js + TypeScript app for building and playing simple logic/puzzle ga
 |-------|------|
 | **Next.js (App Router)** | Web app + routing (`/` for game list, `/games/[id]` to play). |
 | **TypeScript game contract** | `lib/gameTypes.ts` defines `LogicGame`, `GameAction`. |
-| **Games** | One game per file in `games/` (e.g. `games/examplePuzzle.ts`). Export a `LogicGame`. |
+| **Games** | One game per file in `games/` (e.g. `games/logicLock.ts`). Export a `LogicGame`. |
 | **Game shell UI** | `components/GameShell.tsx` renders state, actions, and solved status for any game. |
 | **Tests** | `vitest` for unit-testing game logic (`tests/*.test.ts`). |
 

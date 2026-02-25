@@ -12,6 +12,7 @@
   "dependencies": {
     "next": "latest",
     "openai": "^6.25.0",
+    "posthog-js": "^1.353.1",
     "react": "latest",
     "react-dom": "latest"
   },

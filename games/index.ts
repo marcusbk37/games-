@@ -1,5 +1,4 @@
 import type { LogicGame } from "../lib/gameTypes";
-import { examplePuzzle } from "./examplePuzzle";
 import { logicLock } from "./logicLock";
 import { logicLockMini } from "./logicLockMini";
 import { logicLockPlus } from "./logicLockPlus";
@@ -8,10 +7,13 @@ import { coldToWarm } from "./coldToWarm";
 import { navigationMaze } from "./navigationMaze";
 import { customWordLadderPlaceholder } from "./customWordLadder";
 import { memoryMatch } from "./memoryMatch";
+import { nonogram } from "./nonogram";
 import { redteamPassword } from "./redteamPassword";
+import { sokoban } from "./sokoban";
+import { semantle } from "./semantle";
+import { rushHour } from "./rushHour";
 
 export const allGames: LogicGame[] = [
-  examplePuzzle,
   logicLock,
   logicLockMini,
   logicLockPlus,
@@ -20,7 +22,11 @@ export const allGames: LogicGame[] = [
   navigationMaze,
   customWordLadderPlaceholder,
   memoryMatch,
-  redteamPassword
+  nonogram,
+  redteamPassword,
+  sokoban,
+  semantle,
+  rushHour
 ];
 
 export function findGame(id: string): LogicGame | undefined {
