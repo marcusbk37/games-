@@ -7,6 +7,8 @@ import { logicLockMax } from "./logicLockMax";
 import { coldToWarm } from "./coldToWarm";
 import { navigationMaze } from "./navigationMaze";
 import { customWordLadderPlaceholder } from "./customWordLadder";
+import { memoryMatch } from "./memoryMatch";
+import { redteamPassword } from "./redteamPassword";
 
 export const allGames: LogicGame[] = [
   examplePuzzle,
@@ -16,7 +18,9 @@ export const allGames: LogicGame[] = [
   logicLockMax,
   coldToWarm,
   navigationMaze,
-  customWordLadderPlaceholder
+  customWordLadderPlaceholder,
+  memoryMatch,
+  redteamPassword
 ];
 
 export function findGame(id: string): LogicGame | undefined {
