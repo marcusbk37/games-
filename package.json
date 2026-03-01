@@ -14,7 +14,8 @@
     "openai": "^6.25.0",
     "posthog-js": "^1.353.1",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "resend": "^6.9.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.1",

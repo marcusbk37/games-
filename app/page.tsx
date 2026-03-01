@@ -6,6 +6,7 @@ import {
   WORD_LADDER_HUB_ID,
   WORD_LADDER_VARIANT_IDS
 } from "../games";
+import { GameRequestForm } from "./components/GameRequestForm";
 
 const displayGames = allGames.filter(
   (g) =>
@@ -33,25 +34,6 @@ export default function HomePage() {
         <p className="text-sm text-slate-300">
           Pick a game to play, or use this as a playground to build new puzzles in TypeScript.
         </p>
-      </section>
-
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm font-medium uppercase tracking-wide text-slate-400">
-          Create
-        </h2>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <Link
-            href="/worldforge"
-            className="group rounded-lg border border-slate-800 bg-slate-900/60 p-4 transition hover:border-emerald-400 hover:bg-slate-900 hover:shadow-lg hover:shadow-emerald-500/20"
-          >
-            <h3 className="font-medium text-slate-50 group-hover:text-emerald-100">
-              WorldForge
-            </h3>
-            <p className="mt-1 text-xs text-slate-400">
-              Build a world + character, then explore your creation.
-            </p>
-          </Link>
-        </div>
       </section>
 
       <section className="flex flex-col gap-3">
@@ -102,6 +84,27 @@ export default function HomePage() {
           )}
         </div>
       </section>
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-sm font-medium uppercase tracking-wide text-slate-400">
+          Create
+        </h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Link
+            href="/worldforge"
+            className="group rounded-lg border border-slate-800 bg-slate-900/60 p-4 transition hover:border-emerald-400 hover:bg-slate-900 hover:shadow-lg hover:shadow-emerald-500/20"
+          >
+            <h3 className="font-medium text-slate-50 group-hover:text-emerald-100">
+              WorldForge
+            </h3>
+            <p className="mt-1 text-xs text-slate-400">
+              Build a world + character, then explore your creation.
+            </p>
+          </Link>
+        </div>
+      </section>
+
+      <GameRequestForm />
     </div>
   );
 }
