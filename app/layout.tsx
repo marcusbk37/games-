@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { ReactNode } from "react";
+import { Suspense } from "react";
 import { PostHogProvider, PostHogPageView } from "../components/PostHogProvider";
 
 export const metadata = {
@@ -12,7 +13,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className="min-h-screen bg-slate-950 text-slate-50">
         <PostHogProvider>
-          <PostHogPageView />
+          <Suspense fallback={null}>
+            <PostHogPageView />
+          </Suspense>
           <div className="content-wrap mx-auto flex min-h-screen max-w-3xl flex-col gap-6 px-4 pt-8">
             <header className="flex flex-col gap-2 border-b border-slate-800 pb-4">
               <h1 className="text-2xl font-semibold tracking-tight">Logic Games</h1>

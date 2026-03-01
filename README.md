@@ -41,3 +41,24 @@ npm test
 4. Add tests in `tests/myGame.test.ts` (optional but recommended).
 
 The home page will list all games from `allGames`, and `/games/[id]` will show the generic `GameShell` UI for that game.
+
+## Deploying to Vercel
+
+The app is ready to deploy on [Vercel](https://vercel.com) (Next.js is fully supported).
+
+1. **Connect GitHub**
+   - Go to [vercel.com](https://vercel.com) and sign in with GitHub.
+   - Click **Add New… → Project** and import your `Games!!` (or `logic-games-web`) repository.
+   - Vercel will detect Next.js and set **Build Command** to `next build` and **Output Directory** automatically.
+
+2. **Environment variables**
+   - In the project settings (or during import), add these in **Environment Variables** (use the same names as in `.env.local`):
+     - `OPENAI_API_KEY` – required for Semantle and Red Team chat API routes.
+     - `NEXT_PUBLIC_POSTHOG_KEY` – optional; for PostHog analytics.
+     - `NEXT_PUBLIC_POSTHOG_HOST` – optional; e.g. `https://app.posthog.com` if using PostHog.
+
+3. **Deploy**
+   - Click **Deploy**. Vercel will build and publish the site and give you a URL (e.g. `your-project.vercel.app`).
+   - Future pushes to the connected branch will trigger automatic deployments.
+
+To test the build locally before deploying, run `npm run build` then `npm run start`.
