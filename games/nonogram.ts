@@ -82,7 +82,7 @@ export const nonogram: LogicGame<NonogramState, GameAction> = {
   id: "nonogram",
   name: "Nonogram",
   description:
-    "Fill cells according to the row and column clues. Each number is a run of filled cells; left-click to fill, right-click to mark empty.",
+    "Fill cells according to the row and column clues. Each number is a run of filled cells; single-click fills, double-click clears.",
 
   initialState(): NonogramState {
     const puzzle = PUZZLES[Math.floor(Math.random() * PUZZLES.length)];

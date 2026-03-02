@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 import {
   allGames,
   findGame,
@@ -28,6 +30,20 @@ interface GamePageProps {
   params: Promise<{ id: string }>;
 }
 
+function GamePageFrame({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex flex-col gap-4">
+      <Link
+        href="/"
+        className="w-fit rounded-md border border-slate-700 bg-slate-900 px-3 py-1 text-xs font-medium text-slate-100 hover:border-sky-400 hover:bg-slate-900/80"
+      >
+        ← Home
+      </Link>
+      {children}
+    </div>
+  );
+}
+
 export async function generateStaticParams() {
   return [
     ...allGames.map((g) => ({ id: g.id })),
@@ -42,17 +58,17 @@ export async function generateStaticParams() {
 
 export default async function GamePage({ params }: GamePageProps) {
   const { id } = await params;
-  if (id === LOGIC_LOCK_HUB_ID) return <LogicLockHub />;
-  if (id === WORD_LADDER_HUB_ID) return <WordLadderHub />;
-  if (id === CUSTOM_WORD_LADDER_ID) return <CustomWordLadderPage />;
-  if (id === MEMORY_MATCH_ID) return <MemoryMatchPage />;
-  if (id === NONOGRAM_ID) return <NonogramPage />;
-  if (id === REDTEAM_PASSWORD_ID) return <RedteamPasswordPage />;
-  if (id === RUSH_HOUR_ID) return <RushHourPage />;
-  if (id === SOKOBAN_ID) return <SokobanPage />;
-  if (id === SEMANTLE_ID) return <SemantlePage />;
+  if (id === LOGIC_LOCK_HUB_ID) return <GamePageFrame><LogicLockHub /></GamePageFrame>;
+  if (id === WORD_LADDER_HUB_ID) return <GamePageFrame><WordLadderHub /></GamePageFrame>;
+  if (id === CUSTOM_WORD_LADDER_ID) return <GamePageFrame><CustomWordLadderPage /></GamePageFrame>;
+  if (id === MEMORY_MATCH_ID) return <GamePageFrame><MemoryMatchPage /></GamePageFrame>;
+  if (id === NONOGRAM_ID) return <GamePageFrame><NonogramPage /></GamePageFrame>;
+  if (id === REDTEAM_PASSWORD_ID) return <GamePageFrame><RedteamPasswordPage /></GamePageFrame>;
+  if (id === RUSH_HOUR_ID) return <GamePageFrame><RushHourPage /></GamePageFrame>;
+  if (id === SOKOBAN_ID) return <GamePageFrame><SokobanPage /></GamePageFrame>;
+  if (id === SEMANTLE_ID) return <GamePageFrame><SemantlePage /></GamePageFrame>;
   const game = findGame(id);
   if (!game) return notFound();
-  return <GameShell gameId={id} />;
+  return <GamePageFrame><GameShell gameId={id} /></GamePageFrame>;
 }
 

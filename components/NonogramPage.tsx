@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { nonogram } from "../games/nonogram";
 import type { NonogramState, CellState } from "../games/nonogram";
 
@@ -12,12 +12,12 @@ export function NonogramPage() {
   const rows = puzzle.solution.length;
   const cols = puzzle.solution[0]?.length ?? 0;
 
-  const handleCellClick = (r: number, c: number, isRight: boolean) => {
+  const handleCellClick = (r: number, c: number, isDoubleClick: boolean) => {
     if (solved) return;
     const current = grid[r][c];
-    // Left-click: clear to empty. Right-click: toggle filled (dot).
+    // Single-click: toggle filled (dot). Double-click: clear to empty.
     const type: "fill" | "cross" | "clear" =
-      isRight ? (current === "filled" ? "clear" : "fill") : "clear";
+      isDoubleClick ? "clear" : current === "filled" ? "clear" : "fill";
     setState((prev) =>
       nonogram.apply(prev, { id: type, label: "", payload: { r, c, type } })
     );
@@ -46,7 +46,7 @@ export function NonogramPage() {
             </p>
           )}
           <p className="mt-1 text-xs text-slate-400">
-            Right-click: fill (dot) · Left-click: clear
+            Single click: fill (dot) · Double click: clear
             {solved && " · You won!"}
           </p>
         </div>
@@ -124,11 +124,8 @@ export function NonogramPage() {
                     key={`${r}-${c}`}
                     state={cell}
                     size={cellSize}
-                    onClick={() => handleCellClick(r, c, false)}
-                    onContextMenu={(e) => {
-                      e.preventDefault();
-                      handleCellClick(r, c, true);
-                    }}
+                    onSingleClick={() => handleCellClick(r, c, false)}
+                    onDoubleClick={() => handleCellClick(r, c, true)}
                     disabled={solved}
                   />
                 ))
@@ -150,21 +147,44 @@ export function NonogramPage() {
 function Cell({
   state,
   size,
-  onClick,
-  onContextMenu,
+  onSingleClick,
+  onDoubleClick,
   disabled
 }: {
   state: CellState;
   size: number;
-  onClick: () => void;
-  onContextMenu: (e: React.MouseEvent) => void;
+  onSingleClick: () => void;
+  onDoubleClick: () => void;
   disabled: boolean;
 }) {
+  const clickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+    };
+  }, []);
+
+  const handleClick = () => {
+    if (disabled) return;
+
+    if (clickTimeoutRef.current) {
+      clearTimeout(clickTimeoutRef.current);
+      clickTimeoutRef.current = null;
+      onDoubleClick();
+      return;
+    }
+
+    clickTimeoutRef.current = setTimeout(() => {
+      clickTimeoutRef.current = null;
+      onSingleClick();
+    }, 220);
+  };
+
   return (
     <button
       type="button"
-      onClick={onClick}
-      onContextMenu={onContextMenu}
+      onClick={handleClick}
       disabled={disabled}
       className={`
         flex items-center justify-center border-0 transition duration-100

@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <header className="flex flex-col gap-2 border-b border-slate-800 pb-4">
               <h1 className="text-2xl font-semibold tracking-tight">Logic Games</h1>
               <p className="text-sm text-slate-300">
-                A small collection of logic and puzzle games. New games published every day! Requests are welcome at the bottom of this page.
+                A small collection of logic and puzzle games. New games published every day! Requests are welcome at the bottom of the home page.
               </p>
             </header>
             <main className="flex-1">{children}</main>

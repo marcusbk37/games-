@@ -1,6 +1,4 @@
 "use client";
-
-import Link from "next/link";
 import { GameShell } from "./GameShell";
 import { LOGIC_LOCK_VARIANT_IDS } from "../games";
 import { findGame } from "../games";
@@ -22,12 +20,6 @@ export function LogicLockHub() {
             Four variants on one page. Scroll to play any—same playstyle, different sizes and rules.
           </p>
         </div>
-        <Link
-          href="/"
-          className="rounded-md border border-slate-700 bg-slate-900 px-3 py-1 text-xs font-medium text-slate-100 hover:border-sky-400 hover:bg-slate-900/80"
-        >
-          ← Back
-        </Link>
       </div>
 
       <div className="flex flex-col gap-10 overflow-auto">
